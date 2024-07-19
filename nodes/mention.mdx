@@ -1,0 +1,22 @@
+---
+title: 'Mention'
+description: 'Use the @ symbol to magically reference anything'
+icon: 'at'
+---
+
+## What does it do?
+
+Mentions allow you to include previously generated content, as well as [inputs](/nodes/input), the outputs of other
+[prompts](/nodes/prompt), and even the code used in a [code execution](/nodes/code-execution).
+
+This can be useful for creating complex interactions between different parts of your Wordapp, or for building on
+previous outputs. Almost every Wordapp will use mentions at some point.
+
+
+## How do I use it?
+
+Start by typing `@` in the editor. This will bring up a list of all the available mentions. You can then type to filter
+down to the mention you want, and press `Enter` to select it.
+
+In the runner, the mention will be replaced with the content it references. Any [generations](/nodes/generation) that
+appear after the mention will be able to see the content as if it were part of the prompt.

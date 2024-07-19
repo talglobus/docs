@@ -1,18 +1,18 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Wordware",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/logo_white.svg",
+    "light": "/logo/logo_black.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#5E4C56",
+    "light": "#ab8a9c",
+    "dark": "#331927",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#331927",
+      "to": "#ab8a9c"
     }
   },
   "topbarLinks": [
@@ -33,19 +33,24 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "name": "Try it Out",
+      "icon": "paper-plane-top",
+      "url": "https://wordware.ai"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "Join our Discord",
+      "icon": "discord",
+      "url": "https://discord.gg/6Zm5FGC2kR"
     },
     {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Book a Demo",
+      "icon": "calendar",
+      "url": "https://calendly.com/kamil-wordware/intro-to-wordware-onboarding"
+    },
+    {
+      "name": "Talk to our Founders",
+      "icon": "comment",
+      "url": "mailto:founders@wordware.ai"
     }
   ],
   "navigation": [
@@ -58,14 +63,36 @@
       ]
     },
     {
+      "group": "Recipes",
+      "pages": [
+        "recipes/chatbots"
+      ]
+    },
+    {
+      "group": "Nodes",
+      "pages": [
+        "nodes/generation",
+        "nodes/structured-generation",
+        "nodes/mention",
+        "nodes/human",
+        "nodes/input",
+        "nodes/loop",
+        "nodes/code-execution",
+        "nodes/if-else",
+        "nodes/prompt",
+        "nodes/comment",
+        "nodes/everything-else"
+      ]
+    },
+    {
       "group": "Essentials",
       "pages": [
-        "essentials/markdown",
         "essentials/code",
         "essentials/images",
-        "essentials/settings",
+        "essentials/markdown",
         "essentials/navigation",
-        "essentials/reusable-snippets"
+        "essentials/reusable-snippets",
+        "essentials/settings"
       ]
     },
     {
@@ -84,8 +111,9 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "website": "https://wordware.ai",
+    "discord": "https://discord.gg/6Zm5FGC2kR",
+    "x": "https://x.com/wordware_ai",
+    "linkedin": "https://www.linkedin.com/company/wordware/"
   }
 }

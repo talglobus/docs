@@ -1,0 +1,53 @@
+---
+title: 'Input'
+description: 'Data for your Wordapp to crunch'
+icon: 'input-text'
+---
+
+## What does it do?
+
+Inputs are the data that your Wordapp uses to generate content. Currently, we support text and images as inputs. You can
+use them to provide context for your AI models, or to give them something to work with.
+
+When you run a Wordapp, you will be asked to provide values for your output for this particular run. If you access your
+Wordapp via API, you'll need to provide these values in your request.
+
+![Inputs in the Editor](/images/input-editor-with-sidebar.png)
+
+## How do I use it?
+
+Inputs live in the input bar, just above the start of your prompt in the editor.
+
+![Input Bar](/images/input-bar-editor.png)
+
+To add an input, you can:
+- Click the `+ Add` button in the input bar
+- Type `/input` in the editor and hit `Enter`
+- Type `@` and a name for the new input in the editor, then hit `Enter`
+
+### Options
+
+A number of options appear in the sidebar when you create a new input. Here's what they mean:
+
+#### Name
+
+The name of the input. You'll need this later if you want to reference the input in your prompt.
+
+#### Description
+
+A description of the input. This can be useful for keeping track of what each input is for, but is not required. It's
+also not visible to the AI models in a [generation](/nodes/generation).
+
+#### Input Type
+
+What values are allowed for this input. You can choose between:
+
+| Input type | What it's for                                                                     |
+|------------|-----------------------------------------------------------------------------------|
+| Text       | A short word or phrase                                                            |
+| Long Text  | A longer snippet of text, potentially multiple paragraphs                         |
+| Image      | An image, helpful if you're using AI models with vision capabilities, like GPT-4o |
+
+### Outputs
+
+While it's not technically an output, the value of an input can be referenced in your prompt the same as any other output.
