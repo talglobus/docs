@@ -4,85 +4,71 @@ description: 'Run some custom Javascript code'
 icon: 'code-simple'
 ---
 
-## Titles
+## What does it do?
 
-Best used for section headers.
+Code executions let you run custom JavaScript or Python code in your Wordapp, letting you do truly anything as part of
+your flows. You can use code executions to manipulate data, make API calls, or even call out to AI models we don't
+support (just kidding, there aren't any).
 
-```md
-## Titles
-```
+Code executions are a powerful tool, but they're also on the more advanced side. If you're not comfortable with coding,
+you may want to check out some examples from our community or ask for help in our
+[Discord server](https://discord.gg/6Zm5FGC2kR).
 
-### Subtitles
+![Code Execution in the Editor](/images/nodes/code-execution/code-execution-editor.png)
 
-Best use to subsection headers.
+## How do I use it?
 
-```md
-### Subtitles
-```
+To create a code execution, type `/code` in the editor, and hit `Enter`. You can then write your code in the contents
+of the node. You can write code in either JavaScript or Python, and the code will be executed during the execution of
+the Wordapp.
 
-<Tip>
+You can [@mention](/nodes/mention) any variable in your flow in your code just like you would in the rest of your flow,
+and anything you log to the console or `return` from your code will be available to the rest of your flow.
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+### Options
 
-</Tip>
+A number of options appear in the sidebar when you create a code execution. Here's what they do:
 
-## Text Formatting
+#### Name
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+The name of the code execution. You'll need this later if you want to [@mention](/nodes/mention) its outputs.
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+#### Language
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+The language you'd like to write your code in. You can choose from JavaScript or Python.
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+#### Include output in prompt
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+Whether the output of the code execution should be included in the prompt. If you're using the output of the code
+execution in a later node, you'll want to leave this checked. If you're just using the code execution to manipulate
+data or make API calls, you can uncheck this to keep your prompt clean.
 
-## Linking to Pages
+#### Continue on error
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+Whether the Wordapp should continue running if the code execution throws an error. By default, the Wordapp will stop
+running if a code execution throws an error, but you can check this box to keep the Wordapp running. This is
+particularly useful if you're having AI iterate on writing the code itself. The AI is likely to produce invalid
+code at some point, and you can progressively refine it by continuing on error.
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+<Tip>You can [@mention](/nodes/mention) code into a code execution node just like any other type of content. Just be
+careful you're not exposing anything sensitive to prompt injection!</Tip>
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+### Outputs
 
-## Blockquotes
+#### Code
 
-### Singleline
+The code you've written in the code execution. This is the code that will be executed in the Wordapp.
 
-To create a blockquote, add a `>` in front of a paragraph.
+#### Error
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
+If an error occurs during the execution of the code, you'll be able to access that error here. This can be useful for
+debugging your code, or passing to the AI to help it understand what went wrong, or to debug the code itself.
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
+#### Logs
 
-### Multiline
+Any output you log to the console in your code will be available here.
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+#### Output
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+Anything you `return` from your code will be available here. This is the primary way to pass data from a code execution
+to the rest of your flow.
