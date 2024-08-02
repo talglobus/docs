@@ -4,85 +4,129 @@ description: 'Harness the power of AI, adding some order to the chaos'
 icon: 'table-list'
 ---
 
-## Titles
+## What does it do?
 
-Best used for section headers.
+Structured generations enable you to use AI to produce structured data. One of the most powerful features of Wordware,
+structured generations solve the perennial problem of getting AI to generate something deeper than a block of text.
 
-```md
-## Titles
-```
+![Stuctured Generations in the Runner](/images/nodes/structured-generation/structured-generation.png)
 
-### Subtitles
+## How do I use it?
 
-Best use to subsection headers.
+A generation takes all the data that's appeared in the Wordapp so far and passes it to your AI model of choice, like a
+regular [generation](/nodes/generation). Where it differs is in the output: instead of generating text, a structured
+generation produces objects with fields and values. A recipe might generate an object with fields for ingredients and
+instructions, while a product description might generate an object with fields for price and availability.
 
-```md
-### Subtitles
-```
+This is particularly useful for data to be passed to other systems, like a database or an API. You can reference the
+output of a structured generation with a [@mention](/nodes/mention) like any other generation.
 
-<Tip>
+To create a structured generation, type `/structure` in the editor, and hit `Enter`. You'll be prompted to fill in some details
+about the generation, like its name and the model you want to use, further explained below. Once you run the Wordapp,
+the model will be fed all the content above the generation and generate new content based on it, which you can then
+reference with a [@mention](/nodes/mention).
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+### Shaping the output
 
-</Tip>
+The core of a structured generation is the shape of the output data. You can think of this shape as a set of fields you
+want the AI to produce, where each field has a name and a value. The name is always text, and the value can be text,
+a number, a true/false value, a list, or even another object. You define the shape in the editor, and the AI will
+produce an object of that shape.
 
-## Text Formatting
+![Structured Generation Output Shape](/images/nodes/structured-generation/structured-output-editor.png)
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+<Accordion title="A note for the programmers">
+    For those familiar with programming, this is similar to defining the schema and types of a JSON object, where the above shape might yield the following output:
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+    ```json
+    {
+        "movies": [
+            {
+                "title": "Shrek",
+                "release_year": 2001,
+                "director": "Andrew Adamson",
+                "actors": ["Cameron Diaz", "Mike Myers", "Eddie Murphy"],
+            }, {
+                "title": "The Matrix",
+                "release_year": 1999,
+                "director": "The Wachowskis",
+                "actors": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
+            }, ...
+        ]
+    }
+    ```
+</Accordion>
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+### Types
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+Each field in the output shape has a name, a description, and a type.
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+To add a new component, click one of the buttons at the bottom of the node, choosing your type of choice from the
+buttons in the editor. Look for the symbol on the left to add them to your structured generation shape.
 
-## Linking to Pages
+| Click                                              | Type       | How it works                                                                       |
+|----------------------------------------------------|------------|------------------------------------------------------------------------------------|
+| <Icon icon="square-plus" iconType="regular" />     | Text       | A snippet of text, like a book's title or an author's name                         |
+| <Icon icon="square-plus" iconType="regular" />     | Number     | A numeric value, like the price of a product                                       |
+| <Icon icon="square-plus" iconType="regular" />     | True/False | A yes/no value, like whether or not a product has been purchased                   |
+| <Icon icon="brackets-curly" iconType="regular" />  | Object     | An object mapping field names to values of any of these types, even another object |
+| <Icon icon="brackets-square" iconType="regular" /> | List       | A list containing a list of values of any of these types, even another list        |
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+<Info>Remember that this shape has a hierarchy: objects and lists can both contain other types, so you often
+end up with a nested shape a few levels deep. Whenever you're adding or modifying a field, be mindful of which level it is in,
+and what it's parent is, shown by indentation in the editor.</Info>
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+### What the AI sees
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+When you run a structured generation, the AI sees the content above the generation, just like a regular generation.
+More relevant to structured generations, the AI also sees the output shape you've defined, including the name and type
+of each field, and how they're arranged in relation to each other. Usually, this is enough for it to infer what you're
+looking for.
 
-## Blockquotes
+If you find you need to add more context to help the AI understand, you can always add descriptions to each field as well,
+just to the right of the field name in the editor.
 
-### Singleline
+<Tabs>
+    <Tab title="Editor">
+        ![Weather Report Editor](/images/nodes/structured-generation/weather-report-editor.png)
+    </Tab>
+    <Tab title="Runner">
+        ![Weather Report Runner](/images/nodes/structured-generation/weather-report-runner.png)
+    </Tab>
+</Tabs>
 
-To create a blockquote, add a `>` in front of a paragraph.
+<Tip>Pro Tip: The AI generates content from top to bottom, and can use its previous work to help guide its thought process.
+As the AI is generating fields at the bottom of the structured generation, it will be able to view its already-generated content above.
+Leverage this by, for example, putting summary fields at the bottom instead of the top.</Tip>
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
+### Options (_in the sidebar_)
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
+Structured generations share most of their options with generations. Here's what they mean:
 
-### Multiline
+#### Name
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+The name of the structured generation. You'll need this later if you want to [@mention](/nodes/mention) the output of the structured generation.
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
+#### Creativity
 
-### LaTeX
+How creative the structured generation should be. A higher creativity level will produce more varied and interesting results, but
+is more likely to result in unexpected outputs.
 
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
+As a rule of thumb, increase the creativity level if you're getting overly consistent or boring outputs, and decrease it
+if the outputs are too chaotic or nonsensical. Creative works like poetry or fiction often benefit from higher creativity,
+while logical or technical works like code or reports often benefit from lower creativity.
 
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+#### Model
 
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+Which AI model you'd like to use. You can choose from a variety of models, each with its own strengths and weaknesses.
+
+See our dedicated [model documentation](https://www.notion.so/hey-daily/Models-615b76d7498f4e06ae522a329695da74) for
+our full list of supported models and their capabilities.
+
+### Outputs
+
+Structured generations produce an object as an output. You can access each of the fields of this object in the editor
+with a [@mention](/nodes/mention) by choosing the field name from the dropdown that appears when you type `@`
+and the name specified in the structured generation's settings.
+
+<img width="50%" alt="Structured Generation Output" src="/images/nodes/structured-generation/weather-report-fields.png" style={{ borderRadius: '0.5rem' }} />

@@ -4,85 +4,65 @@ description: 'Let your Wordapp make decisions'
 icon: 'split'
 ---
 
-## Titles
+## What does it do?
 
-Best used for section headers.
+If-else nodes, as the name suggests, allow you to create conditional logic in your Wordapp. This means you can make your
+Wordapp do different things based on the content it's generated so far, or the inputs it's received.
 
-```md
-## Titles
-```
+If-else nodes give Wordapps the ability to make decisions, and sit at the heart of the intelligence AI provides. With Wordware,
+you can trivially pass data back and forth between software and AI, leveraging whichever form of intelligence is best for each point
+of your workflow.
 
-### Subtitles
+![If-Else in the Editor](/images/nodes/if-else/if-else-editor.png)
 
-Best use to subsection headers.
+<Note>Did you know that Wordapps are [Turing complete](https://en.wikipedia.org/wiki/Turing_completeness)? The combination of if-else nodes and [loop](/nodes/loop) nodes
+    make Wordapps capable of carrying out any computation a computer can!</Note>
 
-```md
-### Subtitles
-```
+## How do I use it?
 
-<Tip>
+An if-else node is made up of a series of conditions, each with a corresponding action. When the node runs, it checks each condition in turn,
+running the nodes inside the first section where the condition is true.
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+To create an if-else node, type `/if` in the editor, and hit `Enter`. You'll be prompted to fill in some details about the node,
+like its name, and the conditions and actions you want to include.
 
-</Tip>
+<Frame>
+    ![If-Else in the Sidebar](/images/nodes/if-else/if-else-with-sidebar.png)
+</Frame>
 
-## Text Formatting
+### Conditions
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+Conditions are set in the sidebar under the
+**Expressions** section, with each condition (**IF**) having two slots for inputs, and three ways to compare them:
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+| Comparison | How it works                                                                          |
+|------------|---------------------------------------------------------------------------------------|
+| Match      | Checks if the two values are equal                                                    |
+| Contains   | Checks if the first value contains the second value                                   |
+| Relative   | Compares two numeric inputs, with sub-options for the comparison operator (e.g. \>, \<) |
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+The **Match** and **Contains** comparison types also have toggles for case sensitivity and how to treat symbols and whitespace.
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+You can add as many conditions as you like with the **ADD IF +** button below all the existing conditions. There's also an **ELSE** condition, which runs if none of the other conditions are true.
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+### Actions
 
-## Linking to Pages
+Actions are set in the editor under the appropriate condition, allowing for generations, mentions, and any other
+node types to be run depending on which condition is true.
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+The if-else example above, for example, works as follows:
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
-
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
-
-## Blockquotes
-
-### Singleline
-
-To create a blockquote, add a `>` in front of a paragraph.
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
-
-### Multiline
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+<Steps>
+    <Step title="If">
+        First, the **IF** condition checks if the `@is_known_user` mention is the text "true". If so, the Wordapp will run the nodes inside this section:
+        <Frame>
+            ![If Action](/images/nodes/if-else/if-action.png)
+        </Frame>
+    </Step>
+    <Step title="Else">
+        Then, if the above condition _is not met_, the Wordapp will run the nodes inside this section:
+        <Frame>
+            ![Else Action](/images/nodes/if-else/else-action.png)
+        </Frame>
+    </Step>
+</Steps>

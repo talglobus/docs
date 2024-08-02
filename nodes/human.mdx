@@ -1,88 +1,47 @@
 ---
 title: 'Ask a Human'
-description: 'Runtime input during prompt execution'
+description: 'Runtime input during flow execution'
 icon: 'message-dots'
 ---
 
-## Titles
+## What does it do?
 
-Best used for section headers.
+Human asks allow you to ask for input from a human during the execution of your Wordapp. This is useful whenever you
+need to stop and wait on a human for information, like asking for a decision, a piece of information, or a preference.
 
-```md
-## Titles
-```
+![Human Asks in the Runner](/images/nodes/formatted-human-runner.png)
 
-### Subtitles
+## How do I use it?
 
-Best use to subsection headers.
+A human ask takes a request for the human to respond to in the editor. When you run the Wordapp, the human will be
+prompted to fill in the request, with execution pausing until the human responds, and the response will be available
+for any later steps.
 
-```md
-### Subtitles
-```
+To create a human ask, type `/human` in the editor, and hit `Enter`. Then choose a name in the sidebar.
 
-<Tip>
+### Options
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+A few options appear in the sidebar when you create a human ask. Here's what they mean:
 
-</Tip>
+#### Name
 
-## Text Formatting
+The name of the human ask for later [@mentioning](/nodes/mention).
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+#### Include output in prompt
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+Whether or not to include the human's response in the prompt for later steps. This can be useful if you want the model
+to immediately respond to the human's input, for example, in chatbots. It's also useful in debugging, as you can see the
+human's response in the prompt.
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+<Note>
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+    Enabling this toggle is equivalent to adding a [@mention](/nodes/mention) for the human ask node just below. The
+    only meaningful difference is it keeps the flow less cluttered by hiding the mention node.
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+</Note>
 
-## Linking to Pages
+### Outputs
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
+#### `response`
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
-
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
-
-## Blockquotes
-
-### Singleline
-
-To create a blockquote, add a `>` in front of a paragraph.
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
-
-### Multiline
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+The response from the human. This is the text that the human provides in response to the provided request

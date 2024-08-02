@@ -4,85 +4,59 @@ description: 'Make things happen, and then make them happen again'
 icon: 'arrows-repeat'
 ---
 
-## Titles
+## What does it do?
 
-Best used for section headers.
+Loops let you conditionally repeat parts of your Wordapp. You can use them to create complex interactions, like asking
+the user for input until they give you the right answer, or generating content until it meets a certain criteria.
 
-```md
-## Titles
-```
+Loops are a powerful tool for creating dynamic, interactive Wordapps. They let you build complex logic into your Wordapp,
+and can help you create more engaging and useful experiences. They also let you take advantage of the full power of AI,
+by allowing you to iterate on the content it generates. This pattern lives at the core of every agent.
 
-### Subtitles
+We've got some examples of how to make the most of loops in our recipes, specifically the [chatbot](/recipes/chatbots)
+and [basic agent](/recipes/basic-agent) recipes.
 
-Best use to subsection headers.
+![Loops in the Editor](/images/nodes/loop/loop-editor.png)
 
-```md
-### Subtitles
-```
+## How do I use it?
 
-<Tip>
+A loop has two parts, a condition and an action. The condition determines how long to repeat the action, and the action
+is what you want to repeat.
 
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
+To create a loop, type `/loop` in the editor, and hit `Enter`. You'll be prompted to fill in a name and the condition
+and action for the loop.
 
-</Tip>
+![Loops in the Sidebar](/images/nodes/loop/loop-attributes.png)
 
-## Text Formatting
+### Options
 
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
+A number of options appear in the sidebar when you create a loop. Here's what they mean:
 
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
+#### Name
 
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
+The name of the loop. You'll need this later if you want to [@mention](/nodes/mention) the output of the loop.
 
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
+#### Type
 
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
+There are five types of condition you can use to determine when to stop the loop:
 
-## Linking to Pages
+| Condition type | How it works                                                                                       |
+|----------------|----------------------------------------------------------------------------------------------------|
+| Count          | Stops after a fixed number of iterations                                                           |
+| Match          | Stops when two values are equal, typically at least one a [@mention](/nodes/mention) set elsewhere |
+| Contains       | Stops when one value contains another, used for text comparisons                                   |
+| Relative       | Compares two numeric inputs, with sub-options for the comparison operator (e.g. \>, \<)            |
+| List           | Loops once for every element in a list, giving the action each such element, one at a time         |
 
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
 
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
+A generation takes all the data that's appeared in the Wordapp so far and passes it to your AI model of choice. The
+model then generates new content based on what it's seen.
 
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
+To create a generation, type `/generation` in the editor, and hit `Enter`. You'll be prompted to fill in some details
+about the generation, like its name and the model you want to use, further explained below. Once you run the Wordapp,
+the model will be fed all the content above the generation and generate new content based on it, which you can then
+reference with a [@mention](/nodes/mention).
 
-## Blockquotes
+### Outputs
 
-### Singleline
-
-To create a blockquote, add a `>` in front of a paragraph.
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
-```
-
-### Multiline
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
-```
-
-### LaTeX
-
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
-
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+Loops produce a list-type output, containing all the outputs produced from the action of the loop.

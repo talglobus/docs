@@ -26,10 +26,6 @@
     "url": "https://dashboard.mintlify.com"
   },
   "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
   ],
   "anchors": [
     {
@@ -58,6 +54,7 @@
       "group": "Get Started",
       "pages": [
         "introduction",
+        "tour",
         "quickstart",
         "development"
       ]
@@ -65,7 +62,8 @@
     {
       "group": "Recipes",
       "pages": [
-        "recipes/chatbots"
+        "recipes/chatbots",
+        "recipes/basic-agent"
       ]
     },
     {
@@ -79,34 +77,9 @@
         "nodes/loop",
         "nodes/code-execution",
         "nodes/if-else",
-        "nodes/prompt",
+        "nodes/flow",
         "nodes/comment",
         "nodes/everything-else"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/code",
-        "essentials/images",
-        "essentials/markdown",
-        "essentials/navigation",
-        "essentials/reusable-snippets",
-        "essentials/settings"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
       ]
     }
   ],
@@ -115,5 +88,11 @@
     "discord": "https://discord.gg/6Zm5FGC2kR",
     "x": "https://x.com/wordware_ai",
     "linkedin": "https://www.linkedin.com/company/wordware/"
+  },
+  "analytics": {
+    "posthog": {
+      "apiKey": "phc_GUtsGPhr6cfnnR2GYqxcF3iYkS3oZkcZe1O9gPuxEwW",
+      "apiHost": "https://us.i.posthog.com"
+    }
   }
 }
