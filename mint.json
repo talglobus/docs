@@ -53,17 +53,13 @@
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "tour",
-        "quickstart",
-        "development"
+        "tour"
       ]
     },
     {
       "group": "Recipes",
       "pages": [
         "recipes/chatbots",
-        "recipes/basic-agent"
       ]
     },
     {
